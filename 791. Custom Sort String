@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string customSortString(string s, string T) {
+        unordered_set<char> ss;
+        unordered_map<char, int> ma;
+        for(auto a:s)
+            ss.insert(a);
+        string ans="";
+        for(int i=0;i<T.length();i++){
+            if(ss.find(T[i])!=ss.end()){
+                    if(ma.find(T[i])!=ma.end()){
+                        ma[T[i]]+=1;
+                    }
+                else{
+                    ma[T[i]]=1;
+                }
+            }
+            else{
+                  ans+=T[i]; 
+            }      
+        }
+        for(auto a:s){
+            ans+=string(ma[a],a);
+        }
+        return ans;
+    }
+};
