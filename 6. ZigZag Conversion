@@ -1,0 +1,23 @@
+static int x=[](){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    return 0;
+}(); 
+
+class Solution {    
+public:
+    string convert(string s, int num) {
+        string ans="";
+        for(int i=0;i<s.length();i++){
+            int step=0;
+            bool down=true;
+            for(int j=0;j<s.length();j++){
+                if(step==i)ans.push_back(s[j]);
+                if(down)step++;
+                else step--;
+                if(step==num-1 || !step) down=!down;
+            }
+        }
+        return ans;
+    }
+};
