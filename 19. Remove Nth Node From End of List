@@ -1,0 +1,43 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+
+static int x=[](){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    return 0;
+}();
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        int size=count(head);
+        if(size-n==0) return head->next;
+        return del(head, size-n, 0); 
+    }
+    
+    int count(ListNode* node){
+        int ret=0;
+        while(node!=NULL){
+            ++ret;
+            node=node->next;
+        }
+        return ret;
+    }
+    
+    ListNode* del(ListNode* node, int n, int step){
+       if(node==NULL) return node;
+       if(step+1==n){
+           node->next=del(node->next->next, n, step+=2);
+       }
+        else{
+            node->next=del(node->next, n, step+=1); 
+        }
+        return node;
+    }
+};
