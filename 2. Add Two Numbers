@@ -1,0 +1,55 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        string ans=sum(get(l1),get(l2));
+        ListNode* t=NULL;
+        for(int i=ans.length()-1;i>-1;i--)
+            add(t, ans[i]-48);
+        return t;
+    }
+    
+    string get(ListNode* l){
+        if(l->next==NULL)
+            return to_string(l->val);
+        return get(l->next)+to_string(l->val);
+    }
+    
+    void add(ListNode*& n, int v){
+        if(n==NULL){
+            n=new ListNode(v);
+            n->next=NULL;
+            return;
+        }
+            add(n->next, v);
+    }
+    
+    
+string sum(string one, string two){
+   int temp=0;
+   if(two.length()<one.length()){
+        two=string(one.length()-two.length(), '0').append(two);
+    }
+    else if(two.length()>one.length()){
+       one=string(two.length()-one.length(), '0').append(one);
+    }
+    int ptr1=one.length()-1;
+    int ptr2=two.length()-1;
+    string ans="";
+    while(ptr1>-1){
+        int preAns=(one[ptr1--]-48)+(two[ptr2--]-48);
+        preAns+=temp;
+        temp=preAns/10;
+        ans=to_string(preAns%10)+ans;
+    }
+    if(temp!=0) ans=to_string(temp)+ans;
+    return ans;
+}   
+};
