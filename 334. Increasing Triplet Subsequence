@@ -1,0 +1,22 @@
+static int optima=[](){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    return 0;
+}();
+
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+        int one=INT_MAX;
+        int two=INT_MAX;
+       for(auto& n:nums){
+           if(n<one)
+               one=n;
+           else if(n<two && n>one)
+               two=n;
+           else if(n>two)
+             return true;  
+       }
+        return false;
+    }
+};
