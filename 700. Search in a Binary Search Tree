@@ -1,0 +1,25 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+
+static int x=[](){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    return 0;
+}(); 
+
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+        if(root==NULL) return NULL;
+        if(root->val<val) return searchBST(root->right, val);
+        if(root->val>val) return searchBST(root->left, val);
+        if(root->val==val) return root;
+    }
+};
