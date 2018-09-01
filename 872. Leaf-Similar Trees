@@ -1,0 +1,32 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+
+static int optima=[](){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    return 0;
+}();
+
+class Solution {
+public:
+    bool leafSimilar(TreeNode* root1, TreeNode* root2) {
+        string one="";
+        get(root1, one);
+        string two="";
+        get(root2, two);
+        return one==two?true:false;
+    }
+    
+    void get(TreeNode* root, string& ans){
+        if(root->left!=NULL) get(root->left,ans);
+        if(root->right!=NULL) get(root->right,ans);
+        if(!root->left && !root->right) ans+=to_string(root->val);
+    }
+};
